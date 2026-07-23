@@ -120,11 +120,11 @@ h1 {
   margin: 0 0 1.65em;
 }
 
-.story p:first-child::first-letter {
+.story > p:first-of-type::first-letter {
   float: left;
-  margin: 0.08em 0.09em 0 0;
-  font-size: 4.35em;
-  line-height: 0.75;
+  font-size: 4.2em;
+  line-height: 0.82;
+  margin: 0.08em 0.12em 0 0;
 }
 
 .story-footer {
