@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <title>Feedback — Mary Brown and the Normalisation of Deviance</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="feedback-page">
+    <div class="shell">
+      <a class="back" href="../story/">← Back to the story</a>
+      <h1>Reader feedback</h1>
+      <p class="feedback-intro">
+        Answer as much or as little as you like. This page does not send or store anything online.
+        The button at the bottom copies your answers so you can paste them into a message.
+      </p>
+
+      <form class="feedback-form" id="feedback-form">
+      <div class="field">
+        <label for="q1">What was your overall reaction to the story?</label>
+        <textarea id="q1" name="What was your overall reaction to the story?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q2">How convincing and distinctive did Mary’s voice feel?</label>
+        <textarea id="q2" name="How convincing and distinctive did Mary’s voice feel?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q3">Were there any sections where your attention drifted or the pacing slowed?</label>
+        <textarea id="q3" name="Were there any sections where your attention drifted or the pacing slowed?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q4">At what point did you begin to suspect what Mary had done?</label>
+        <textarea id="q4" name="At what point did you begin to suspect what Mary had done?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q5">Did the clues feel satisfying, too obvious or too hidden?</label>
+        <textarea id="q5" name="Did the clues feel satisfying, too obvious or too hidden?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q6">How did the ending land for you?</label>
+        <textarea id="q6" name="How did the ending land for you?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q7">Was anything confusing, implausible or inconsistent?</label>
+        <textarea id="q7" name="Was anything confusing, implausible or inconsistent?"></textarea>
+      </div>
+      <div class="field">
+        <label for="q8">Is there anything you would cut, expand or change?</label>
+        <textarea id="q8" name="Is there anything you would cut, expand or change?"></textarea>
+      </div>
+        <div class="actions">
+          <button class="button" type="button" id="copy">Copy feedback</button>
+          <button class="button secondary" type="reset">Clear answers</button>
+        </div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById("feedback-form");
+    const status = document.getElementById("status");
+
+    document.getElementById("copy").addEventListener("click", async () => {
+      const entries = [...form.querySelectorAll(".field")].map(field => {
+        const question = field.querySelector("label").textContent.trim();
+        const answer = field.querySelector("textarea").value.trim() || "[No answer]";
+        return `${question}\n${answer}`;
+      });
+
+      const output = `Feedback on Mary Brown and the Normalisation of Deviance\n\n${entries.join("\n\n")}`;
+
+      try {
+        await navigator.clipboard.writeText(output);
+        status.textContent = "Feedback copied. You can now paste it into an email or message.";
+      } catch (error) {
+        status.textContent = "Your browser blocked copying. Select the answers manually instead.";
+      }
+    });
+  </script>
+</body>
+</html>
